@@ -1,0 +1,9 @@
+scikit-learn
+dash
+pandas
+numpy 
+seaborn
+matplotlib
+googlemaps
+SQLAlchemy
+psycopg2-binary

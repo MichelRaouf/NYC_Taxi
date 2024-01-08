@@ -1,0 +1,58 @@
+[2023-12-18T15:23:27.065+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:23:22.665173+00:00 [queued]>
+[2023-12-18T15:23:27.069+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:23:22.665173+00:00 [queued]>
+[2023-12-18T15:23:27.070+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2023-12-18T15:23:27.076+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): dashboards_task> on 2023-12-18 15:23:22.665173+00:00
+[2023-12-18T15:23:27.079+0000] {standard_task_runner.py:57} INFO - Started process 192 to run task
+[2023-12-18T15:23:27.081+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'green_taxis_01_2015_pipeline', 'dashboards_task', 'manual__2023-12-18T15:23:22.665173+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/main_dag.py', '--cfg-path', '/tmp/tmpe0nye7f9']
+[2023-12-18T15:23:27.083+0000] {standard_task_runner.py:85} INFO - Job 30: Subtask dashboards_task
+[2023-12-18T15:23:27.106+0000] {task_command.py:416} INFO - Running <TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:23:22.665173+00:00 [running]> on host 02c86e8d4ef1
+[2023-12-18T15:23:27.146+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='green_taxis_01_2015_pipeline' AIRFLOW_CTX_TASK_ID='dashboards_task' AIRFLOW_CTX_EXECUTION_DATE='2023-12-18T15:23:22.665173+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-12-18T15:23:22.665173+00:00'
+[2023-12-18T15:23:28.359+0000] {logging_mixin.py:154} INFO - Dash is running on http://0.0.0.0:8050/
+[2023-12-18T15:23:28.359+0000] {dash.py:2053} INFO - Dash is running on http://0.0.0.0:8050/
+
+[2023-12-18T15:23:28.362+0000] {logging_mixin.py:154} INFO -  * Serving Flask app '***'
+[2023-12-18T15:23:28.363+0000] {logging_mixin.py:154} INFO -  * Debug mode: off
+[2023-12-18T15:23:28.363+0000] {_internal.py:224} INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8050
+ * Running on http://172.22.0.5:8050
+[2023-12-18T15:23:28.363+0000] {_internal.py:224} INFO - [33mPress CTRL+C to quit[0m
+[2023-12-18T15:23:35.853+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:23:35] "GET / HTTP/1.1" 200 -
+[2023-12-18T15:23:35.859+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:23:35] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+[2023-12-18T15:23:35.868+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:23:35] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+[2023-12-18T15:23:36.066+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:23:36] "GET /_dash-layout HTTP/1.1" 200 -
+[2023-12-18T15:23:36.067+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:23:36] "GET /_dash-dependencies HTTP/1.1" 200 -
+[2023-12-18T15:34:20.005+0000] {local_task_job_runner.py:115} ERROR - Received SIGTERM. Terminating subprocesses
+[2023-12-18T15:34:20.021+0000] {process_utils.py:131} INFO - Sending 15 to group 192. PIDs of all processes in the group: [192]
+[2023-12-18T15:34:20.024+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 192
+[2023-12-18T15:34:20.049+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2023-12-18T15:34:20.109+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dashboards.py", line 39, in initialize_dashboards
+    app.run_server(host='0.0.0.0', debug=False)
+  File "/home/airflow/.local/lib/python3.8/site-packages/dash/dash.py", line 2175, in run_server
+    self.run(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/dash/dash.py", line 2076, in run
+    self.server.run(host=host, port=port, debug=debug, **flask_run_options)
+  File "/home/airflow/.local/lib/python3.8/site-packages/flask/app.py", line 1191, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "/home/airflow/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 1069, in run_simple
+    srv.serve_forever()
+  File "/home/airflow/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 766, in serve_forever
+    super().serve_forever(poll_interval=poll_interval)
+  File "/usr/local/lib/python3.8/socketserver.py", line 232, in serve_forever
+    ready = selector.select(poll_interval)
+  File "/usr/local/lib/python3.8/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1634, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2023-12-18T15:34:20.121+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=green_taxis_01_2015_pipeline, task_id=dashboards_task, execution_date=20231218T152322, start_date=20231218T152327, end_date=20231218T153420
+[2023-12-18T15:34:20.150+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 30 for task dashboards_task (Task received SIGTERM signal; 192)
+[2023-12-18T15:34:20.225+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=192, status='terminated', exitcode=1, started='15:23:26') (192) terminated with exit code 1
+[2023-12-18T15:34:20.228+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 143
+[2023-12-18T15:34:20.259+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,168 @@
+[2023-12-18T14:24:34.104+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.integration_task manual__2023-12-18T14:23:58.125940+00:00 [queued]>
+[2023-12-18T14:24:34.109+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.integration_task manual__2023-12-18T14:23:58.125940+00:00 [queued]>
+[2023-12-18T14:24:34.109+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2023-12-18T14:24:34.115+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): integration_task> on 2023-12-18 14:23:58.125940+00:00
+[2023-12-18T14:24:34.119+0000] {standard_task_runner.py:57} INFO - Started process 390 to run task
+[2023-12-18T14:24:34.121+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'green_taxis_01_2015_pipeline', 'integration_task', 'manual__2023-12-18T14:23:58.125940+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/main_dag.py', '--cfg-path', '/tmp/tmpyba0mq3v']
+[2023-12-18T14:24:34.123+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask integration_task
+[2023-12-18T14:24:34.152+0000] {task_command.py:416} INFO - Running <TaskInstance: green_taxis_01_2015_pipeline.integration_task manual__2023-12-18T14:23:58.125940+00:00 [running]> on host 02c86e8d4ef1
+[2023-12-18T14:24:34.192+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='green_taxis_01_2015_pipeline' AIRFLOW_CTX_TASK_ID='integration_task' AIRFLOW_CTX_EXECUTION_DATE='2023-12-18T14:23:58.125940+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-12-18T14:23:58.125940+00:00'
+[2023-12-18T14:24:40.499+0000] {logging_mixin.py:154} INFO - connected succesfully
+[2023-12-18T14:25:07.425+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(M4_green_taxis_01_2015, 2200) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/integration.py", line 21, in integration_task
+    nyc_df.to_sql(name='M4_green_taxis_01_2015', con=engine, if_exists='fail')
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 2878, in to_sql
+    return sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 769, in to_sql
+    return pandas_sql.to_sql(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1910, in to_sql
+    table = self.prep_table(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 1814, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 914, in create
+    self._execute_create()
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/sql.py", line 900, in _execute_create
+    self.table.create(bind=self.pd_sql.con)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 962, in create
+    bind._run_ddl_visitor(ddl.SchemaGenerator, self, checkfirst=checkfirst)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2221, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 899, in visit_table
+    self.connection.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 80, in _execute_on_connection
+    return connection._execute_ddl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1477, in _execute_ddl
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(M4_green_taxis_01_2015, 2200) already exists.
+
+[SQL: 
+CREATE TABLE "M4_green_taxis_01_2015" (
+	index BIGINT, 
+	pickup_datetime TEXT, 
+	dropoff_datetime TEXT, 
+	pickup_location BIGINT, 
+	dropoff_location BIGINT, 
+	passenger_count FLOAT(53), 
+	trip_distance FLOAT(53), 
+	fare_amount FLOAT(53), 
+	extra FLOAT(53), 
+	mta_tax FLOAT(53), 
+	tip_amount FLOAT(53), 
+	tolls_amount FLOAT(53), 
+	ehail_fee FLOAT(53), 
+	improvement_surcharge FLOAT(53), 
+	total_amount FLOAT(53), 
+	congestion_surcharge FLOAT(53), 
+	week_number BIGINT, 
+	week_range TEXT, 
+	"vendor_VeriFone Inc." BIGINT, 
+	"vendor_Creative Mobile Technologies, LLC" BIGINT, 
+	"store_and_fwd_flag_N" BIGINT, 
+	"store_and_fwd_flag_Y" BIGINT, 
+	"rate_type_Standard rate" BIGINT, 
+	"rate_type_Negotiated fare" BIGINT, 
+	"rate_type_Newark" BIGINT, 
+	"rate_type_Nassau or Westchester" BIGINT, 
+	"rate_type_JFK" BIGINT, 
+	"rate_type_Group ride" BIGINT, 
+	"rate_type_Unknown" BIGINT, 
+	"payment_type_Credit Card" BIGINT, 
+	"payment_type_Cash" BIGINT, 
+	"trip_type_Street-hail" BIGINT, 
+	"trip_type_Dispatch" BIGINT, 
+	"trip_type_Unknown" BIGINT, 
+	cost_per_mile FLOAT(53), 
+	trip_duration FLOAT(53), 
+	trip_speed FLOAT(53), 
+	latitude_pickup FLOAT(53), 
+	longitude_pickup FLOAT(53), 
+	latitude_dropoff FLOAT(53), 
+	longitude_dropoff FLOAT(53)
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[2023-12-18T14:25:07.443+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=green_taxis_01_2015_pipeline, task_id=integration_task, execution_date=20231218T142358, start_date=20231218T142434, end_date=20231218T142507
+[2023-12-18T14:25:07.453+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task integration_task ((psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+DETAIL:  Key (typname, typnamespace)=(M4_green_taxis_01_2015, 2200) already exists.
+
+[SQL: 
+CREATE TABLE "M4_green_taxis_01_2015" (
+	index BIGINT, 
+	pickup_datetime TEXT, 
+	dropoff_datetime TEXT, 
+	pickup_location BIGINT, 
+	dropoff_location BIGINT, 
+	passenger_count FLOAT(53), 
+	trip_distance FLOAT(53), 
+	fare_amount FLOAT(53), 
+	extra FLOAT(53), 
+	mta_tax FLOAT(53), 
+	tip_amount FLOAT(53), 
+	tolls_amount FLOAT(53), 
+	ehail_fee FLOAT(53), 
+	improvement_surcharge FLOAT(53), 
+	total_amount FLOAT(53), 
+	congestion_surcharge FLOAT(53), 
+	week_number BIGINT, 
+	week_range TEXT, 
+	"vendor_VeriFone Inc." BIGINT, 
+	"vendor_Creative Mobile Technologies, LLC" BIGINT, 
+	"store_and_fwd_flag_N" BIGINT, 
+	"store_and_fwd_flag_Y" BIGINT, 
+	"rate_type_Standard rate" BIGINT, 
+	"rate_type_Negotiated fare" BIGINT, 
+	"rate_type_Newark" BIGINT, 
+	"rate_type_Nassau or Westchester" BIGINT, 
+	"rate_type_JFK" BIGINT, 
+	"rate_type_Group ride" BIGINT, 
+	"rate_type_Unknown" BIGINT, 
+	"payment_type_Credit Card" BIGINT, 
+	"payment_type_Cash" BIGINT, 
+	"trip_type_Street-hail" BIGINT, 
+	"trip_type_Dispatch" BIGINT, 
+	"trip_type_Unknown" BIGINT, 
+	cost_per_mile FLOAT(53), 
+	trip_duration FLOAT(53), 
+	trip_speed FLOAT(53), 
+	latitude_pickup FLOAT(53), 
+	longitude_pickup FLOAT(53), 
+	latitude_dropoff FLOAT(53), 
+	longitude_dropoff FLOAT(53)
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 390)
+[2023-12-18T14:25:07.474+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-12-18T14:25:07.489+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

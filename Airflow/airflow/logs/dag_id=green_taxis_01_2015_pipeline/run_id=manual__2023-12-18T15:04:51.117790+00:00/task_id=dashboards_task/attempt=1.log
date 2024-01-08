@@ -1,0 +1,29 @@
+[2023-12-18T15:04:54.882+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:04:51.117790+00:00 [queued]>
+[2023-12-18T15:04:54.889+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:04:51.117790+00:00 [queued]>
+[2023-12-18T15:04:54.889+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2023-12-18T15:04:54.898+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): dashboards_task> on 2023-12-18 15:04:51.117790+00:00
+[2023-12-18T15:04:54.902+0000] {standard_task_runner.py:57} INFO - Started process 584 to run task
+[2023-12-18T15:04:54.905+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'green_taxis_01_2015_pipeline', 'dashboards_task', 'manual__2023-12-18T15:04:51.117790+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/main_dag.py', '--cfg-path', '/tmp/tmppk3le0ad']
+[2023-12-18T15:04:54.907+0000] {standard_task_runner.py:85} INFO - Job 25: Subtask dashboards_task
+[2023-12-18T15:04:54.932+0000] {task_command.py:416} INFO - Running <TaskInstance: green_taxis_01_2015_pipeline.dashboards_task manual__2023-12-18T15:04:51.117790+00:00 [running]> on host 02c86e8d4ef1
+[2023-12-18T15:04:54.978+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='green_taxis_01_2015_pipeline' AIRFLOW_CTX_TASK_ID='dashboards_task' AIRFLOW_CTX_EXECUTION_DATE='2023-12-18T15:04:51.117790+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-12-18T15:04:51.117790+00:00'
+[2023-12-18T15:04:56.278+0000] {logging_mixin.py:154} INFO - Dash is running on http://0.0.0.0:8050/
+[2023-12-18T15:04:56.278+0000] {dash.py:2053} INFO - Dash is running on http://0.0.0.0:8050/
+
+[2023-12-18T15:04:56.282+0000] {logging_mixin.py:154} INFO -  * Serving Flask app '***'
+[2023-12-18T15:04:56.283+0000] {logging_mixin.py:154} INFO -  * Debug mode: off
+[2023-12-18T15:04:56.283+0000] {_internal.py:224} INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8050
+ * Running on http://172.22.0.4:8050
+[2023-12-18T15:04:56.284+0000] {_internal.py:224} INFO - [33mPress CTRL+C to quit[0m
+[2023-12-18T15:04:59.037+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:04:59] "GET / HTTP/1.1" 200 -
+[2023-12-18T15:04:59.043+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:04:59] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+[2023-12-18T15:04:59.051+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:04:59] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+[2023-12-18T15:04:59.250+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:04:59] "GET /_dash-layout HTTP/1.1" 200 -
+[2023-12-18T15:04:59.251+0000] {_internal.py:224} INFO - 192.168.65.1 - - [18/Dec/2023 15:04:59] "GET /_dash-dependencies HTTP/1.1" 200 -
+[2023-12-18T15:06:30.904+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2023-12-18T15:06:30.907+0000] {process_utils.py:131} INFO - Sending 15 to group 584. PIDs of all processes in the group: [584]
+[2023-12-18T15:06:30.908+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 584
+[2023-12-18T15:06:30.908+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2023-12-18T15:06:30.960+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=584, status='terminated', exitcode=0, started='15:04:54') (584) terminated with exit code 0
